@@ -1,0 +1,550 @@
+git(7)
+======
+
+NAME
+----
+git - the stupid content tracker
+
+
+SYNOPSIS
+--------
+'git-<command>' <args>
+
+DESCRIPTION
+-----------
+
+This is reference information for the core git commands.
+
+Before reading this cover to cover, you may want to take a look
+at the link:tutorial.html[tutorial] document.
+
+The <<Discussion>> section below contains much useful definition and
+clarification info - read that first.  And of the commands, I suggest
+reading gitlink:git-update-index[1] and
+gitlink:git-read-tree[1] first - I wish I had!
+
+If you are migrating from CVS, link:cvs-migration.html[cvs migration]
+document may be helpful after you finish the tutorial.
+
+After you get the general feel from the tutorial and this
+overview page, you may want to take a look at the
+link:howto-index.html[howto] documents.
+
+
+David Greaves <david@dgreaves.com>
+08/05/05
+
+Updated by Junio C Hamano <junkio@cox.net> on 2005-05-05 to
+reflect recent changes.
+
+Commands Overview
+-----------------
+The git commands can helpfully be split into those that manipulate
+the repository, the index and the working fileset, those that
+interrogate and compare them, and those that moves objects and
+references between repositories.
+
+In addition, git itself comes with a spartan set of porcelain
+commands.  They are usable but are not meant to compete with real
+Porcelains.
+
+There are also some ancillary programs that can be viewed as useful
+aids for using the core commands but which are unlikely to be used by
+SCMs layered over git.
+
+Manipulation commands
+~~~~~~~~~~~~~~~~~~~~~
+gitlink:git-apply[1]::
+	Reads a "diff -up1" or git generated patch file and
+	applies it to the working tree.
+
+gitlink:git-checkout-index[1]::
+	Copy files from the index to the working directory
+
+gitlink:git-commit-tree[1]::
+	Creates a new commit object
+
+gitlink:git-hash-object[1]::
+	Computes the object ID from a file.
+
+gitlink:git-index-pack.html[1]::
+	Build pack index file for an existing packed archive.
+
+gitlink:git-init-db[1]::
+	Creates an empty git object database
+
+gitlink:git-merge-index[1]::
+	Runs a merge for files needing merging
+
+gitlink:git-mktag[1]::
+	Creates a tag object
+
+gitlink:git-pack-objects[1]::
+	Creates a packed archive of objects.
+
+gitlink:git-prune-packed[1]::
+	Remove extra objects that are already in pack files.
+
+gitlink:git-read-tree[1]::
+	Reads tree information into the directory index
+
+gitlink:git-unpack-objects[1]::
+	Unpacks objects out of a packed archive.
+
+gitlink:git-update-index[1]::
+	Modifies the index or directory cache
+
+gitlink:git-write-tree[1]::
+	Creates a tree from the current index
+
+
+Interrogation commands
+~~~~~~~~~~~~~~~~~~~~~~
+
+gitlink:git-cat-file[1]::
+	Provide content or type information for repository objects
+
+gitlink:git-diff-index[1]::
+	Compares content and mode of blobs between the index and repository
+
+gitlink:git-diff-files[1]::
+	Compares files in the working tree and the index
+
+gitlink:git-diff-stages[1]::
+	Compares two "merge stages" in the index file.
+
+gitlink:git-diff-tree[1]::
+	Compares the content and mode of blobs found via two tree objects
+
+gitlink:git-fsck-objects[1]::
+	Verifies the connectivity and validity of the objects in the database
+
+gitlink:git-ls-files[1]::
+	Information about files in the index/working directory
+
+gitlink:git-ls-tree[1]::
+	Displays a tree object in human readable form
+
+gitlink:git-merge-base[1]::
+	Finds as good a common ancestor as possible for a merge
+
+gitlink:git-name-rev[1]::
+	Find symbolic names for given revs
+
+gitlink:git-rev-list[1]::
+	Lists commit objects in reverse chronological order
+
+gitlink:git-show-index[1]::
+	Displays contents of a pack idx file.
+
+gitlink:git-tar-tree[1]::
+	Creates a tar archive of the files in the named tree
+
+gitlink:git-unpack-file[1]::
+	Creates a temporary file with a blob's contents
+
+gitlink:git-var[1]::
+	Displays a git logical variable
+
+gitlink:git-verify-pack[1]::
+	Validates packed git archive files
+
+The interrogate commands may create files - and you can force them to
+touch the working file set - but in general they don't
+
+
+Synching repositories
+~~~~~~~~~~~~~~~~~~~~~
+
+gitlink:git-clone-pack[1]::
+	Clones a repository into the current repository (engine
+	for ssh and local transport)
+
+gitlink:git-fetch-pack[1]::
+	Updates from a remote repository.
+
+gitlink:git-http-fetch[1]::
+	Downloads a remote git repository via HTTP
+
+gitlink:git-local-fetch[1]::
+	Duplicates another git repository on a local system
+
+gitlink:git-peek-remote[1]::
+	Lists references on a remote repository using upload-pack protocol.
+
+gitlink:git-receive-pack[1]::
+	Invoked by 'git-send-pack' to receive what is pushed to it.
+
+gitlink:git-send-pack[1]::
+	Pushes to a remote repository, intelligently.
+
+gitlink:git-shell[1]::
+	Restricted shell for GIT-only SSH access.
+
+gitlink:git-ssh-fetch[1]::
+	Pulls from a remote repository over ssh connection
+
+gitlink:git-ssh-upload[1]::
+	Helper "server-side" program used by git-ssh-fetch
+
+gitlink:git-update-server-info[1]::
+	Updates auxiliary information on a dumb server to help
+	clients discover references and packs on it.
+
+gitlink:git-upload-pack[1]::
+	Invoked by 'git-clone-pack' and 'git-fetch-pack' to push
+	what are asked for.
+
+
+Porcelain-ish Commands
+----------------------
+
+gitlink:git-add[1]::
+	Add paths to the index file.
+
+gitlink:git-am[1]::
+	Apply patches from a mailbox, but cooler.
+
+gitlink:git-applymbox[1]::
+	Apply patches from a mailbox.
+
+gitlink:git-bisect[1]::
+	Find the change that introduced a bug.
+
+gitlink:git-branch[1]::
+	Create and Show branches.
+
+gitlink:git-checkout[1]::
+	Checkout and switch to a branch.
+
+gitlink:git-cherry-pick[1]::
+	Cherry-pick the effect of an existing commit.
+
+gitlink:git-clone[1]::
+	Clones a repository into a new directory.
+
+gitlink:git-commit[1]::
+	Record changes to the repository.
+
+gitlink:git-diff[1]::
+	Show changes between commits, commit and working tree, etc.
+
+gitlink:git-fetch[1]::
+	Download from a remote repository via various protocols.
+
+gitlink:git-format-patch[1]::
+	Prepare patches for e-mail submission.
+
+gitlink:git-grep[1]::
+	Print lines matching a pattern
+
+gitlink:git-log[1]::
+	Shows commit logs.
+
+gitlink:git-ls-remote[1]::
+	Shows references in a remote or local repository.
+
+gitlink:git-merge[1]::
+	Grand unified merge driver.
+
+gitlink:git-mv[1]::
+	Move or rename a file, a directory, or a symlink.
+
+gitlink:git-octopus[1]::
+	Merge more than two commits.
+
+gitlink:git-pull[1]::
+	Fetch from and merge with a remote repository.
+
+gitlink:git-push[1]::
+	Update remote refs along with associated objects.
+
+gitlink:git-rebase[1]::
+	Rebase local commits to new upstream head.
+
+gitlink:git-rename[1]::
+	Rename files and directories.
+
+gitlink:git-repack[1]::
+	Pack unpacked objects in a repository.
+
+gitlink:git-reset[1]::
+	Reset current HEAD to the specified state.
+
+gitlink:git-resolve[1]::
+	Merge two commits.
+
+gitlink:git-revert[1]::
+	Revert an existing commit.
+
+gitlink:git-shortlog[1]::
+	Summarizes 'git log' output.
+
+gitlink:git-show-branch[1]::
+	Show branches and their commits.
+
+gitlink:git-status[1]::
+	Shows the working tree status.
+
+gitlink:git-verify-tag[1]::
+	Check the GPG signature of tag.
+
+gitlink:git-whatchanged[1]::
+	Shows commit logs and differences they introduce.
+
+
+Ancillary Commands
+------------------
+Manipulators:
+
+gitlink:git-applypatch[1]::
+	Apply one patch extracted from an e-mail.
+
+gitlink:git-archimport[1]::
+	Import an arch repository into git.
+
+gitlink:git-convert-objects[1]::
+	Converts old-style git repository
+
+gitlink:git-cvsimport[1]::
+	Salvage your data out of another SCM people love to hate.
+
+gitlink:git-lost+found[1]::
+	Recover lost refs that luckily have not yet been pruned.
+
+gitlink:git-merge-one-file[1]::
+	The standard helper program to use with "git-merge-index"
+
+gitlink:git-prune[1]::
+	Prunes all unreachable objects from the object database
+
+gitlink:git-relink[1]::
+	Hardlink common objects in local repositories.
+
+gitlink:git-svnimport[1]::
+	Import a SVN repository into git.
+
+gitlink:git-sh-setup[1]::
+	Common git shell script setup code.
+
+gitlink:git-symbolic-ref[1]::
+	Read and modify symbolic refs
+
+gitlink:git-tag[1]::
+	An example script to create a tag object signed with GPG
+
+gitlink:git-update-ref[1]::
+	Update the object name stored in a ref safely.
+
+
+Interrogators:
+
+gitlink:git-check-ref-format[1]::
+	Make sure ref name is well formed.
+
+gitlink:git-cherry[1]::
+	Find commits not merged upstream.
+
+gitlink:git-count-objects[1]::
+	Count unpacked number of objects and their disk consumption.
+
+gitlink:git-daemon[1]::
+	A really simple server for git repositories.
+
+gitlink:git-get-tar-commit-id[1]::
+	Extract commit ID from an archive created using git-tar-tree.
+
+gitlink:git-mailinfo[1]::
+	Extracts patch from a single e-mail message.
+
+gitlink:git-mailsplit[1]::
+	git-mailsplit.
+
+gitlink:git-patch-id[1]::
+	Compute unique ID for a patch.
+
+gitlink:git-parse-remote[1]::
+	Routines to help parsing $GIT_DIR/remotes/
+
+gitlink:git-request-pull[1]::
+	git-request-pull.
+
+gitlink:git-rev-parse[1]::
+	Pick out and massage parameters.
+
+gitlink:git-send-email[1]::
+	Send patch e-mails out of "format-patch --mbox" output.
+
+gitlink:git-symbolic-refs[1]::
+	Read and modify symbolic refs.
+
+gitlink:git-stripspace[1]::
+	Filter out empty lines.
+
+
+Commands not yet documented
+---------------------------
+
+gitlink:gitk[1]::
+	gitk.
+
+
+Configuration Mechanism
+-----------------------
+
+Starting from 0.99.9 (actually mid 0.99.8.GIT), .git/config file
+is used to hold per-repository configuration options.  It is a
+simple text file modelled after `.ini` format familiar to some
+people.  Here is an example:
+
+------------
+#
+# This is the config file, and
+# a '#' or ';' character indicates
+# a comment
+#
+
+; core variables
+[core]
+	; Don't trust file modes
+	filemode = false
+
+; user identity
+[user]
+	name = "Junio C Hamano"
+	email = "junkio@twinsun.com"
+
+------------
+
+Various commands read from the configuration file and adjust
+their operation accordingly.
+
+
+Identifier Terminology
+----------------------
+<object>::
+	Indicates the sha1 identifier for any type of object
+
+<blob>::
+	Indicates a blob object sha1 identifier
+
+<tree>::
+	Indicates a tree object sha1 identifier
+
+<commit>::
+	Indicates a commit object sha1 identifier
+
+<tree-ish>::
+	Indicates a tree, commit or tag object sha1 identifier.  A
+	command that takes a <tree-ish> argument ultimately wants to
+	operate on a <tree> object but automatically dereferences
+	<commit> and <tag> objects that point at a <tree>.
+
+<type>::
+	Indicates that an object type is required.
+	Currently one of: blob/tree/commit/tag
+
+<file>::
+	Indicates a filename - always relative to the root of
+	the tree structure GIT_INDEX_FILE describes.
+
+Symbolic Identifiers
+--------------------
+Any git command accepting any <object> can also use the following
+symbolic notation:
+
+HEAD::
+	indicates the head of the repository (ie the contents of
+	`$GIT_DIR/HEAD`)
+<tag>::
+	a valid tag 'name'+
+	(ie the contents of `$GIT_DIR/refs/tags/<tag>`)
+<head>::
+	a valid head 'name'+
+	(ie the contents of `$GIT_DIR/refs/heads/<head>`)
+<snap>::
+	a valid snapshot 'name'+
+	(ie the contents of `$GIT_DIR/refs/snap/<snap>`)
+
+
+File/Directory Structure
+------------------------
+
+Please see link:repository-layout.html[repository layout] document.
+
+Higher level SCMs may provide and manage additional information in the
+GIT_DIR.
+
+
+Terminology
+-----------
+Please see link:glossary.html[glossary] document.
+
+
+Environment Variables
+---------------------
+Various git commands use the following environment variables:
+
+The git Repository
+~~~~~~~~~~~~~~~~~~
+These environment variables apply to 'all' core git commands. Nb: it
+is worth noting that they may be used/overridden by SCMS sitting above
+git so take care if using Cogito etc
+
+'GIT_INDEX_FILE'::
+	This environment allows the specification of an alternate
+	index file. If not specified, the default of `$GIT_DIR/index`
+	is used.
+
+'GIT_OBJECT_DIRECTORY'::
+	If the object storage directory is specified via this
+	environment variable then the sha1 directories are created
+	underneath - otherwise the default `$GIT_DIR/objects`
+	directory is used.
+
+'GIT_ALTERNATE_OBJECT_DIRECTORIES'::
+	Due to the immutable nature of git objects, old objects can be
+	archived into shared, read-only directories. This variable
+	specifies a ":" separated list of git object directories which
+	can be used to search for git objects. New objects will not be
+	written to these directories.
+
+'GIT_DIR'::
+	If the 'GIT_DIR' environment variable is set then it specifies
+	a path to use instead of `./.git` for the base of the
+	repository.
+
+git Commits
+~~~~~~~~~~~
+'GIT_AUTHOR_NAME'::
+'GIT_AUTHOR_EMAIL'::
+'GIT_AUTHOR_DATE'::
+'GIT_COMMITTER_NAME'::
+'GIT_COMMITTER_EMAIL'::
+	see gitlink:git-commit-tree[1]
+
+git Diffs
+~~~~~~~~~
+'GIT_DIFF_OPTS'::
+'GIT_EXTERNAL_DIFF'::
+	see the "generating patches" section in :
+	gitlink:git-diff-index[1];
+	gitlink:git-diff-files[1];
+	gitlink:git-diff-tree[1]
+
+Discussion[[Discussion]]
+------------------------
+include::../README[]
+
+Author
+------
+Written by Linus Torvalds <torvalds@osdl.org> and the git-list <git@vger.kernel.org>.
+
+Documentation
+--------------
+Documentation by David Greaves, Junio C Hamano and the git-list <git@vger.kernel.org>.
+
+GIT
+---
+Part of the gitlink:git[7] suite
+
